@@ -4,39 +4,43 @@
 
 # include "type.h"
 
-typedef enum	e_err
+typedef enum e_err
 {
-	NONE = 0,
+	ERR_NONE = 0,
 
-	/* Invalid argument/allocation */
-	INVALID_ARG,
-	ALLOC_FAIL,
-	MLX_CONNECTION_FAIL,
-	WINDOW_CREATION_FAIL,
-	BUFFER_CREATION_FAIL,
+	/* high level / user */
+	ERR_USAGE,
 
-	/* File not found*/
-	FILE_OPEN_ERROR,
-	FILE_READ_ERROR,
+	/* system level */
+	ERR_SYS_ALLOC,
+	ERR_SYS_IO,
 
-	/* Invalid setup */
-	INVALID_MAP,
-	INVALID_INPUT,
-	INVALID_TEXTURE,
-	INVLAID_SFX,
-
-	UNKNOWN
+	/* engine / content */
+	ERR_MLX,
+	ERR_MAP_FORMAT,
+	ERR_INPUT_SETUP,
+	ERR_ASSET_MISSING,
+	ERR_UNKNOWN
 }	t_err;
 
+/* tells us if the game is running, paused, existed or didn't even start yet*/
+typedef enum e_gstate
+{
+	NONE = 0,
+	MENU,
+	RUN,
+	PAUSE,
+	EXIT,
+}	t_gstate;
+
+/* a Singletone containing all game data/info */
 typedef struct	s_context
 {
-	bool				game_state;
+	t_gstate			game_state;
 	t_map				world_map;
 	t_input_system		input;
 	t_event_system		events;
-	t_audio_system		audio;
 	t_texture_mapping	textures;
-	t_err				err_code;
 }	t_context;
 
 /* Functions */

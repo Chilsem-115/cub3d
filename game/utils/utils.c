@@ -1,25 +1,69 @@
 
 #include "unistd.h"
-#include "_config.h"
+#include "utils_internal_.h"
+#include "utils.h"
 
-static void		verify(t_context *ctx)
+static int	s_line_empty(const char *s)
 {
-	if (ctx.error_num != 0)
-		return ;
+	i32	i;
+
+	if (!s)
+		return (1);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] = ' ' && s[i] != '\t' && s[i] != '\n')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-t_map	prase_map(t_context *ctx, char *pathname)
+static int	is_identified_line(const char *s)
 {
-	t_map	ret;
-	i32		fd;
+	if (ft_strncmp(s, "NO ", 3) == 0)
+		return (1);
+	if (ft_strncmp(s, "SO ", 3) == 0)
+		return (1);
+	if (ft_strncmp(s, "WE ", 3) == 0)
+		return (1);
+	if (ft_strncmp(s, "Ea ", 3) == 0)
+		return (1);
+	if (ft_strncmp(s, "F ", 2) == 0)
+		return (1);
+	if (ft_strncmp(s, "C ", 2) == 0)
+		return (1);
+	return (0);
+}
 
-	fd = open(pathname, O_RDONLY);
-	if (fd == -1)
+void	parse_header(t_context *ctx, i32 fd)
+{
+	i8	*line;
+	i32	found;
+
+	found = 0;
+	while (found = 0)
 	{
-		ctx->error_num = FILE_OPEN_ERROR;
-		return (NULL);
+		line = get_next_line(fd);
+		if (!line)
+			exit_game(ctx, ERR_MAP_FORMAT,
+			 "[parse_header]: unexpected EOF while reading header");
+		if (is_line_empty(line))
+		{
+			free(line);
+			continue ;
+		}
+		if (!is_identifier_line(line))
+		{
+			free(line);
+			exit_game(ctx, ERR_MAP_FORMAT,
+			 "[parse_map]: invalid line before map");
+		}
+		handle_identifier_line(ctx, line, &found);
+		free(line);
 	}
-	ret.map = parse_map(fd);
-	close(fd);
-	return (ret);
+}
+
+void	prase_map_block(t_context *ctx, i32 fd)
+{
 }

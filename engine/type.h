@@ -46,8 +46,23 @@ typedef struct	s_audio_system
 {
 }	t_audio_system;
 
-typedef struct	s_texture_mapping
+typedef struct s_texture_mapping
 {
+	i8	*no_path;
+	i8	*so_path;
+	i8	*we_path;
+	i8	*ea_path;
+
+	i32		floor_color;   /* e.g. 0xRRGGBB */
+	i32		ceiling_color;
+
+	/* later when MLX is ready: */
+	void	*no_img;
+	void	*so_img;
+	void	*we_img;
+	void	*ea_img;
+	i32		tex_w;
+	i32		tex_h;
 }	t_texture_mapping;
 
 #endif

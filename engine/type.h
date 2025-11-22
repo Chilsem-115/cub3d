@@ -38,9 +38,9 @@ typedef struct	s_input
 {
 }	t_input;
 
-typedef struct	s_event_system
+typedef struct	s_action_system
 {
-}	t_event_system;
+}	t_action_system;
 
 typedef struct	s_audio_system
 {
@@ -53,7 +53,7 @@ typedef struct s_texture_mapping
 	i8	*we_path;
 	i8	*ea_path;
 
-	i32		floor_color;   /* e.g. 0xRRGGBB */
+	i32		floor_color;		/* e.g. 0xRRGGBB */
 	i32		ceiling_color;
 
 	/* later when MLX is ready: */

@@ -1,0 +1,53 @@
+
+#include "libft.h"
+#include "parse_internal_.h"
+#include "parse.h"
+
+static i8	*check_missing_texture(t_context *ctx)
+{
+	static i8	msg[128];
+	size_t		base_len;
+
+	ft_strlcpy(msg, "[parse_header]: missing identifier(s):", sizeof(msg));
+	base_len = ft_strlen(msg);
+	if (!ctx->textures.no_path)
+		ft_strlcat(msg, " NO", sizeof(msg));
+	if (!ctx->textures.so_path)
+		ft_strlcat(msg, " SO", sizeof(msg));
+	if (!ctx->textures.we_path)
+		ft_strlcat(msg, " WE", sizeof(msg));
+	if (!ctx->textures.ea_path)
+		ft_strlcat(msg, " EA", sizeof(msg));
+	if (ctx->textures.floor_color == -1)
+		ft_strlcat(msg, " F", sizeof(msg));
+	if (ctx->textures.ceiling_color == -1)
+		ft_strlcat(msg, " C", sizeof(msg));
+	if (ft_strlen(msg) == base_len)
+		return (NULL);
+	return (msg);
+}
+
+/* internal helper: texture/color validation */
+void	validate_textures(t_context *ctx)
+{
+	i8	*err;
+
+	err = check_missing_texture(ctx);
+	if (err)
+		exit_game(ctx, ERR_MAP_FORMAT, err);
+}
+
+/* for checking if the map key is valid */
+static i32	is_map_key(i8 c)
+{
+	return (c == '0' || c == '1'
+		|| c == ' ' || c == 'N'
+		|| c == 'S' || c == 'E'
+		|| c == 'W');
+}
+
+/* internal helper: map validation*/
+void	validate_map(t_context *ctx)
+{
+	(void)ctx;
+}

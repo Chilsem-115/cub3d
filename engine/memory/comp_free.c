@@ -14,10 +14,6 @@ void	free_events_sys(ctx->events)
 {
 
 }
-void	free_audio_sys(ctx->audio)
-{
-
-}
 void	free_textures_sys(ctx->textures)
 {
 

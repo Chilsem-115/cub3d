@@ -28,8 +28,8 @@ typedef enum e_gstate
 {
 	NONE = 0,
 	MENU,
-	RUN,
-	PAUSE,
+	RUNNING,
+	PAUSED,
 	EXIT,
 }	t_gstate;
 
@@ -39,7 +39,7 @@ typedef struct	s_context
 	t_gstate			game_state;
 	t_map				world_map;
 	t_input_system		input;
-	t_event_system		events;
+	t_action_system		action;
 	t_texture_mapping	textures;
 }	t_context;
 

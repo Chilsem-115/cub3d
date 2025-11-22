@@ -8,14 +8,20 @@ static void	context_init(t_context *ctx, i8 *map_path)
 	ctx->game_state = MENU;
 	if (!map_path)
 		exit_game(NULL, ERR_USAGE, "[context_init]: invalid map path/filename");
-	/* Stage 1: load everything from .cub file into ctx */
+	/* Stage 1: initialize subsystems */
+	map_init(&ctx->world_map);
+	texture_init(&ctx->textures);
+
+	/*
+	 * Stage 1: fill in the data related to map and textures
+	 * then verify that the data is correct
+	 * if there is missing or invalid data, throw an error and exit
+	 * */
 	load_cub(ctx, map_path);
 
-	/* Stage 2: initialize subsystems using loaded data*/
-	map_init(ctx);
+	/* Stage 3: set player actions */
 	input_init(ctx);
-	event_init(ctx);
-	texture_init(ctx);
+	action_init(ctx);
 }
 
 int	main(i32 argc, i8 *argv[])

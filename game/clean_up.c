@@ -43,7 +43,6 @@ static void	context_destroy(t_context *ctx)
 {
 	if (!ctx)
 		return ;
-
 	free_map(ctx->world_map);
 	free_input_sys(ctx->input);
 	free_events_sys(ctx->events);

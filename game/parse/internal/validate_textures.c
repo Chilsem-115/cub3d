@@ -36,18 +36,3 @@ void	validate_textures(t_context *ctx)
 	if (err)
 		exit_game(ctx, ERR_MAP_FORMAT, err);
 }
-
-/* for checking if the map key is valid */
-static i32	is_map_key(i8 c)
-{
-	return (c == '0' || c == '1'
-		|| c == ' ' || c == 'N'
-		|| c == 'S' || c == 'E'
-		|| c == 'W');
-}
-
-/* internal helper: map validation*/
-void	validate_map(t_context *ctx)
-{
-	(void)ctx;
-}

@@ -41,7 +41,8 @@ static void	handle_texture_line(t_context *ctx, i8 *line, i32 *found)
 	else if (ft_strncmp(line, "EA ", 3) == 0)
 		set_texture_path(&ctx->textures.ea_path, line + 3, ctx);
 	else
-		exit_game(ctx, ERR_MAP_FORMAT, "[parse_header::handle_texture]: bad texture identifier");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::handle_texture]: bad texture identifier");
 	(*found)++;
 }
 
@@ -53,7 +54,8 @@ static void	handle_color_line(t_context *ctx, i8 *line, i32 *found)
 	else if (ft_strncmp(line, "C ", 2) == 0)
 		ctx->textures.ceiling_color = parse_rgb(line + 2, ctx);
 	else
-		exit_game(ctx, ERR_MAP_FORMAT, "[parse_header::handle_color]: bad color identifier");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::handle_color]: bad color identifier");
 	(*found)++;
 }
 
@@ -68,5 +70,6 @@ void	handle_line(t_context *ctx, i8 *line, i32 *found)
 	else if (id == ID_COLOR)
 		handle_color_line(ctx, line, found);
 	else
-		exit_game(ctx, ERR_MAP_FORMAT, "[parse_header::handle_line]: invalid identifier line");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::handle_line]: invalid identifier line");
 }

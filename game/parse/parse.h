@@ -1,6 +1,6 @@
 
-#ifndef _CONFIG_H
-#define _CONFIG_H
+#ifndef PARSE_H
+# define PARSE_H
 
 # include "engine.h"
 

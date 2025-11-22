@@ -1,6 +1,6 @@
 
-#ifndef UTILS_INTERNAL__H
-# define UTILS_INTERNAL__H
+#ifndef PARSE_INTERNAL__H
+# define PARSE_INTERNAL__H
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -22,6 +22,5 @@ void	parse_header(t_context *ctx, i32 fd);
 void	parse_map_block(t_context *ctx, i32 fd);
 
 /* map-reading helper */
-
 
 #endif

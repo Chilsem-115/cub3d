@@ -31,7 +31,7 @@ void	map_init(t_map *map)
 	if (!map)
 		return ;
 	ft_bzero(map, sizeof(t_map));
-	map->tile_size = 64;   /* or whatever default you want */
+	map->tile_size = 64;
 }
 
 void	load_cub(t_context *ctx, i8 *map_path)

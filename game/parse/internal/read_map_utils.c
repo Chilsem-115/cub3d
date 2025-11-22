@@ -58,4 +58,3 @@ void	store_remaining_lines(t_context *ctx, i8 ***buf, i32 *cap, i32 fd)
 		ctx->world_map.rows++;
 	}
 }
-

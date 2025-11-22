@@ -81,8 +81,9 @@ void	parse_map_block(t_context *ctx, i32 fd)
 	i8	*line;
 
 	line = NULL;
-	while ((line = get_next_line(fd)))
+	while (1)
 	{
+		line = get_next_line(fd);
 		if (!is_line_empty(line))
 			break ;
 		free(line);

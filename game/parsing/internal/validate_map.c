@@ -53,4 +53,7 @@ static void	check_enclosure(t_context *ctx)
 /* internal helper: map validation */
 void	validate_map(t_context *ctx)
 {
+	check_allowed_chars(ctx);
+	find_player(ctx);
+	check_enclosure(ctx);
 }

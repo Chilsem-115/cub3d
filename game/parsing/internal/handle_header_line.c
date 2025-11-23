@@ -59,7 +59,7 @@ static void	handle_color_line(t_context *ctx, i8 *line, i32 *found)
 	(*found)++;
 }
 
-void	handle_line(t_context *ctx, i8 *line, i32 *found)
+void	handle_header_line(t_context *ctx, i8 *line, i32 *found)
 {
 	t_idenfitier	id;
 

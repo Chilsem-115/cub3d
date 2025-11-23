@@ -24,24 +24,30 @@ static i32	is_line_empty(const i8 *s)
 static void	validate_textures(t_context *ctx)
 {
 	if (!ctx->textures.no_path)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: NO");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: NO");
 	if (!ctx->textures.so_path)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: SO");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: SO");
 	if (!ctx->textures.we_path)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: WE");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: WE");
 	if (!ctx->textures.ea_path)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: EA");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: EA");
 	if (ctx->textures.floor_color == -1)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: F");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: F");
 	if (ctx->textures.ceiling_color == -1)
-		exit_game(ctx, ERR_MAP_FORMAT, "missing identifier: C");
+		exit_game(ctx, ERR_MAP_FORMAT,
+			"[parse_header::texture]: missing identifier: C");
 }
 
 /*
 ** parse_header:
 **  - reads lines with get_next_line
 **  - skips empty lines
-**  - forwards each non-empty line to handle_line(ctx, line, &found)
+**  - forwards each non-empty line to handle_header_line(ctx, line, &found)
 **  - stops when all 6 identifiers (NO,SO,WE,EA,F,C) are found
 **  - throws an error and exits if EOF is reached before finding all 6
 */
@@ -62,7 +68,7 @@ void	parse_header(t_context *ctx, i32 fd)
 			free(line);
 			continue ;
 		}
-		handle_line(ctx, line, &found);
+		handle_header_line(ctx, line, &found);
 		free(line);
 	}
 	validate_textures(ctx);

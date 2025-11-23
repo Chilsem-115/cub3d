@@ -2,6 +2,16 @@
 #include "utils_internal_.h"
 #include "libft.h"
 
+i8	**alloc_map_buffer(t_context *ctx, i32 cap)
+{
+	i8	**buf;
+
+	buf = (i8 **)malloc(sizeof(i8 *) * cap);
+	if (!buf)
+		exit_game(ctx, ERR_SYS_ALLOC, "[parse_map]: malloc failed");
+	return (buf);
+}
+
 static void	grow_map_buffer(t_context *ctx, i8 ***buf, i32 *cap, i32 rows)
 {
 	i8	**new;
@@ -26,16 +36,6 @@ static void	update_map_dims(t_context *ctx, const i8 *line)
 	len = (i32)ft_strlen(line);
 	if (len > ctx->world_map.cols)
 		ctx->world_map.cols = len;
-}
-
-i8	**alloc_map_buffer(t_context *ctx, i32 cap)
-{
-	i8	**buf;
-
-	buf = (i8 **)malloc(sizeof(i8 *) * cap);
-	if (!buf)
-		exit_game(ctx, ERR_SYS_ALLOC, "[parse_map]: malloc failed");
-	return (buf);
 }
 
 void	store_first_line(t_context *ctx, i8 **buf, i8 *first)

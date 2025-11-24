@@ -36,7 +36,7 @@ static void	check_enclosure(t_context *ctx)
 
 	map = &ctx->world_map;
 	row = 0;
-	while (r < map->rows)
+	while (row < map->rows)
 	{
 		col = 0;
 		while (map->map[row][col] && map->map[row][col] != '\n')

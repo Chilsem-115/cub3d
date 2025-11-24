@@ -20,29 +20,6 @@ static i32	is_line_empty(const i8 *s)
 	return (1);
 }
 
-/* internal helper: verify all required textures / colors are set */
-static void	validate_textures(t_context *ctx)
-{
-	if (!ctx->textures.no_path)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: NO");
-	if (!ctx->textures.so_path)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: SO");
-	if (!ctx->textures.we_path)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: WE");
-	if (!ctx->textures.ea_path)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: EA");
-	if (ctx->textures.floor_color == -1)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: F");
-	if (ctx->textures.ceiling_color == -1)
-		exit_game(ctx, ERR_MAP_FORMAT,
-			"[parse_header::texture]: missing identifier: C");
-}
-
 /*
 ** parse_header:
 **  - reads lines with get_next_line

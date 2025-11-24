@@ -1,5 +1,6 @@
 
 #include "parse_internal_.h"
+#include "libft.h"
 
 static t_identifier	get_identifier(const char *s)
 {
@@ -61,7 +62,7 @@ static void	handle_color_line(t_context *ctx, i8 *line, i32 *found)
 
 void	handle_header_line(t_context *ctx, i8 *line, i32 *found)
 {
-	t_idenfitier	id;
+	t_identifier	id;
 
 	strip_newline(line);
 	id = get_identifier(line);

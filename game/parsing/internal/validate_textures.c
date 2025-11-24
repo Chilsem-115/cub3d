@@ -11,17 +11,17 @@ static i8	*check_missing_texture(t_context *ctx)
 	ft_strlcpy(msg, "[parse_header]: missing identifier(s):", sizeof(msg));
 	base_len = ft_strlen(msg);
 	if (!ctx->textures.no_path)
-		ft_strlcat(msg, " NO", sizeof(msg));
+		ft_strlcat(msg, " [NO]", sizeof(msg));
 	if (!ctx->textures.so_path)
-		ft_strlcat(msg, " SO", sizeof(msg));
+		ft_strlcat(msg, " [SO]", sizeof(msg));
 	if (!ctx->textures.we_path)
-		ft_strlcat(msg, " WE", sizeof(msg));
+		ft_strlcat(msg, " [WE]", sizeof(msg));
 	if (!ctx->textures.ea_path)
-		ft_strlcat(msg, " EA", sizeof(msg));
+		ft_strlcat(msg, " [EA]", sizeof(msg));
 	if (ctx->textures.floor_color == -1)
-		ft_strlcat(msg, " F", sizeof(msg));
+		ft_strlcat(msg, " [F]", sizeof(msg));
 	if (ctx->textures.ceiling_color == -1)
-		ft_strlcat(msg, " C", sizeof(msg));
+		ft_strlcat(msg, " [C]", sizeof(msg));
 	if (ft_strlen(msg) == base_len)
 		return (NULL);
 	return (msg);

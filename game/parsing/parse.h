@@ -4,8 +4,8 @@
 
 # include "engine.h"
 
-/* extraction functions */
-void	parse_header(t_context *ctx, i32 fd)
-void	parse_map_block(t_context *ctx, i32 fd)
+/* public functions */
+void	parse_header(t_context *ctx, i32 fd);
+void	parse_map_block(t_context *ctx, i32 fd);
 
 #endif

@@ -1,6 +1,7 @@
 
 #include "engine.h"
 #include "parsing.h"
+#include "libft.h"
 
 void	input_init(t_context *ctx)
 {

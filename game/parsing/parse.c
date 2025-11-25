@@ -36,10 +36,15 @@ void	parse_header(t_context *ctx, i32 fd)
 	found = 0;
 	while (found < 6)
 	{
-		line = get_next_line(fd);
+		line = (i8 *)get_next_line(fd);
 		if (!line)
+		{
+			if (found == 0)
+				exit_game(ctx, ERR_MAP_FORMAT,
+					"[parse_header]: missing header (expected NO, SO, WE, EA, F, C)");
 			exit_game(ctx, ERR_MAP_FORMAT,
 				"[parse_header]: unexpected EOF while reading header");
+		}
 		if (is_line_empty(line))
 		{
 			free(line);
@@ -66,7 +71,7 @@ void	parse_map_block(t_context *ctx, i32 fd)
 	line = NULL;
 	while (1)
 	{
-		line = get_next_line(fd);
+		line = (i8 *)get_next_line(fd);
 		if (!is_line_empty(line))
 			break ;
 		free(line);
@@ -75,4 +80,17 @@ void	parse_map_block(t_context *ctx, i32 fd)
 		exit_game(ctx, ERR_MAP_FORMAT, "[parse_map]: no map found");
 	read_map_lines(ctx, fd, line);
 	validate_map(ctx);
+}
+
+void	confirm_format(t_context *ctx, const char *map_path)
+{
+	const char	*ext;
+
+	if (!map_path || *map_path == '\0')
+		exit_game(ctx, ERR_USAGE,
+			"[context_init::confirm_format]: invalid map path/filename");
+	ext = ft_strrchr(map_path, '.');
+	if (!ext || ft_strncmp(ext, ".cub", 4) != 0 || ext[4] != '\0')
+		exit_game(ctx, ERR_USAGE,
+			"[context_init::confirm_format]: map file must end with .cub");
 }

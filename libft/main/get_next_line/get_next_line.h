@@ -27,5 +27,6 @@ char	*ft_strjoin(char *s1, char *s2);
 int		handle_buffer(char **line, char *tmp, ssize_t read_val, char **remain);
 int		handle_static(char **remain, char **line);
 int		handle_tmp(char **remain, char *tmp, char **line);
+void	get_next_line_clear(void);
 
 #endif

@@ -1,41 +1,62 @@
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+NAME := cub3D
+CC := cc
+CFLAGS := -Wall -Wextra -Werror
+export CCACHE_DISABLE := 1
 
-ENGINE_SRCS = engine/engine.c \
+LIBFT_DIR := libft
+LIBFT := $(LIBFT_DIR)/libft.a
 
-GAME_SRCS = game/main.c \
+SRCS := \
+	engine/engine.c \
+	engine/memory/comp_free.c \
+	game/_config.c \
+	game/clean_up.c \
+	game/main.c \
+	game/parsing/parse.c \
+	game/parsing/internal/handle_header_line.c \
+	game/parsing/internal/parse_utils.c \
+	game/parsing/internal/read_map.c \
+	game/parsing/internal/read_map_utils.c \
+	game/parsing/internal/validate_map.c \
+	game/parsing/internal/validate_map_utils.c \
+	game/parsing/internal/validate_textures.c
 
+OBJDIR := obj
+OBJS := $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
 
-SRCS = $(ENGINE_SRCS) $(GAME_SRCS)
+INCLUDES := \
+	-Iengine \
+	-Igame \
+	-Igame/parsing \
+	-Igame/parsing/internal \
+	-I$(LIBFT_DIR)
 
-ENGINE_OBJS =
-
-
-GAME_OBJS = 
-
-
-# -------------------------------------------- #
+MAP ?= maps/backrooms.cub
 
 all: $(NAME)
+
+$(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(OBJS) $(LIBFT_A)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) $(LDFLAGS) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 clean:
+	$(MAKE) -C $(LIBFT_DIR) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
 
 re: fclean all
 
 run: $(NAME)
-	./$(NAME)
+	./$(NAME) $(MAP)
 
 .PHONY: all clean fclean re run

@@ -1,5 +1,5 @@
 
-#include "utils_internal_.h"
+#include "parse_internal_.h"
 #include "libft.h"
 
 i8	**alloc_map_buffer(t_context *ctx, i32 cap)
@@ -49,7 +49,7 @@ void	store_remaining_lines(t_context *ctx, i8 ***buf, i32 *cap, i32 fd)
 {
 	i8	*line;
 
-	while ((line = get_next_line(fd)))
+	while ((line = (i8 *)get_next_line(fd)))
 	{
 		if (ctx->world_map.rows + 1 >= *cap)
 			grow_map_buffer(ctx, buf, cap, ctx->world_map.rows);

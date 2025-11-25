@@ -1,4 +1,6 @@
 
+#include <errno.h>
+#include <string.h>
 #include "engine.h"
 #include "libft.h"
 
@@ -39,20 +41,22 @@ static void	log_err(t_err err, const char *detail)
 		ft_dprintf(2, "  system: %s\n", strerror(errno));
 }
 
-static void	context_destroy(t_context *ctx)
+void	context_destroy(t_context *ctx)
 {
 	if (!ctx)
 		return ;
-	free_map(ctx->world_map);
-	free_input_sys(ctx->input);
-	free_events_sys(ctx->events);
-	free_textures_sys(ctx->textures);
+	free_map(&ctx->world_map);
+	free_input_sys(&ctx->input);
+	free_action_sys(&ctx->action);
+	free_textures_sys(&ctx->textures);
 }
 
 void	exit_game(t_context *ctx, t_err err_code, const char *detail)
 {
+	get_next_line_clear();
 	if (ctx)
 	{
+		ctx->err_code = err_code;
 		ctx->game_state = EXIT;
 		context_destroy(ctx);
 	}

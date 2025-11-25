@@ -71,6 +71,10 @@ void	handle_header_line(t_context *ctx, i8 *line, i32 *found)
 	else if (id == ID_COLOR)
 		handle_color_line(ctx, line, found);
 	else
+	{
+		free(line);
+		validate_textures(ctx);
 		exit_game(ctx, ERR_MAP_FORMAT,
 			"[parse_header::handle_line]: invalid identifier line");
+	}
 }

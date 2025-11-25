@@ -1,5 +1,5 @@
 
-#include "parse_utils_.h"
+#include "parse_internal_.h"
 
 /* allowed map keys */
 static i32	is_map_key(i8 c)
@@ -10,7 +10,7 @@ static i32	is_map_key(i8 c)
 		|| c == 'W');
 }
 
-static i32	is_player(i8 c)
+i32	is_player(i8 c)
 {
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }

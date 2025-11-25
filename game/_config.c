@@ -1,14 +1,18 @@
 
+#include <fcntl.h>
+#include <unistd.h>
 #include "engine.h"
-#include "parsing.h"
+#include "parse.h"
 #include "libft.h"
 
 void	input_init(t_context *ctx)
 {
+	(void)ctx;
 }
 
 void	action_init(t_context *ctx)
 {
+	(void)ctx;
 }
 
 void	texture_init(t_texture_mapping *tx)
@@ -35,10 +39,11 @@ void	map_init(t_map *map)
 	map->tile_size = 64;
 }
 
-void	load_cub(t_context *ctx, i8 *map_path)
+void	load_cub(t_context *ctx, const char *map_path)
 {
 	i32	fd;
 
+	confirm_format(ctx, map_path);
 	fd = open(map_path, O_RDONLY);
 	if (fd == -1)
 		exit_game(ctx, ERR_SYS_IO, "[context_init::load_cub]: open() failed");

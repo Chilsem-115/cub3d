@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "engine.h"
+# include "libft.h"
 
 /* identifier category */
 typedef enum e_identifier
@@ -17,6 +18,8 @@ typedef enum e_identifier
 /* header handling */
 void	handle_header_line(t_context *ctx, i8 *line, i32 *found);
 void	validate_textures(t_context *ctx);
+void	set_texture_path(i8 **dst, const i8 *src, t_context *ctx);
+i32		parse_rgb(const i8 *s, t_context *ctx);
 
 
 /* map_block handling */
@@ -29,5 +32,6 @@ void	read_map_lines(t_context *ctx, i32 fd, i8 *first);
 void	check_allowed_chars(t_context *ctx);
 void	find_player(t_context *ctx);
 void	validate_map(t_context *ctx);
+i32		is_player(i8 c);
 
 #endif

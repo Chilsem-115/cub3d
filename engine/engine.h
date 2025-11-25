@@ -1,7 +1,9 @@
 
 #ifndef ENGINE_H
-#define	ENGINE_H
+# define ENGINE_H
 
+# include <stdlib.h>
+# include <unistd.h>
 # include "type.h"
 
 typedef enum e_err
@@ -36,6 +38,7 @@ typedef enum e_gstate
 /* a Singletone containing all game data/info */
 typedef struct	s_context
 {
+	t_err				err_code;
 	t_gstate			game_state;
 	t_map				world_map;
 	t_input_system		input;
@@ -50,5 +53,19 @@ t_err	engine_render(t_context *ctx);
 
 /* error handling */
 void	context_destroy(t_context *ctx);
+void	exit_game(t_context *ctx, t_err err_code, const char *detail);
+
+/* setup */
+void	map_init(t_map *map);
+void	texture_init(t_texture_mapping *tx);
+void	input_init(t_context *ctx);
+void	action_init(t_context *ctx);
+void	load_cub(t_context *ctx, const char *map_path);
+
+/* cleanup */
+void	free_map(t_map *map);
+void	free_input_sys(t_input_system *input);
+void	free_action_sys(t_action_system *action);
+void	free_textures_sys(t_texture_mapping *textures);
 
 #endif

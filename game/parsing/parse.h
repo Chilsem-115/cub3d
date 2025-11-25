@@ -7,5 +7,6 @@
 /* public functions */
 void	parse_header(t_context *ctx, i32 fd);
 void	parse_map_block(t_context *ctx, i32 fd);
+void	confirm_format(t_context *ctx, const char *map_path);
 
 #endif

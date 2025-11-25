@@ -2,7 +2,7 @@
 #include "engine.h"
 #include "libft.h"
 
-static void	context_init(t_context *ctx, i8 *map_path)
+static void	context_init(t_context *ctx, const char *map_path)
 {
 	ft_bzero(ctx, sizeof(t_context));
 	ctx->game_state = MENU;
@@ -15,7 +15,7 @@ static void	context_init(t_context *ctx, i8 *map_path)
 	action_init(ctx);
 }
 
-int	main(i32 argc, i8 *argv[])
+int	main(int argc, char **argv)
 {
 	t_context	ctx;
 

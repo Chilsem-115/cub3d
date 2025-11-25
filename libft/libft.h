@@ -76,6 +76,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /* file reading */
 char	*get_next_line(int fd);
+void	get_next_line_clear(void);
 void	read_file(int fd, char **buffer);
 
 /* printf variations */

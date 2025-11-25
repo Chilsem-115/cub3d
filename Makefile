@@ -13,6 +13,7 @@ SRCS := \
 	game/_config.c \
 	game/clean_up.c \
 	game/main.c \
+	game/tmp_print.c \
 	game/parsing/parse.c \
 	game/parsing/internal/handle_header_line.c \
 	game/parsing/internal/parse_utils.c \
